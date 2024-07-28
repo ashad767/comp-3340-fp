@@ -5,6 +5,7 @@ define('SITE_DEBUG', 0);
 # Automatically load config.php.
 require_once('config.php');
 
+
 # Ensure that session_start() is always called...
 ini_set('session.gc_maxlifetime', $CFG->session_timeout);
 ini_set('session.cookie_lifetime', 0); // i.e., cookies are not permanent
@@ -15,4 +16,11 @@ define('CLASS_DIR', dirname(__FILE__).DIRECTORY_SEPARATOR.'autoload/');
 set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
 spl_autoload_extensions('.php');
 spl_autoload_register();
+
+require_once('init.php');
+if($CFG->init === TRUE)
+    createDB();
+
+pageid::set_current_pageid(pageid::MAIN);
+// $db = new dbuser(TRUE);
 ?>

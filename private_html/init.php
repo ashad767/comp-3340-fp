@@ -4,12 +4,15 @@ require_once('common.php');
 // Clearly this is a very crude interface.
 // A normal web site would never output raw text. Instead an admin login
 // would trigger this and only would output errors if they occured.
+// header('Content-Type: text/plain');
+
 try
 {
-  echo "Destroying users DB...\n";
+  echo "Creating users DB...\n";
   $db = new dbuser();
-  $db->admin_destroy_db();
-  echo "Finished destroying DB.\n";
+  $db->admin_create_db();
+  echo "Finished creating DB.\n";
+  $db->insert("$CFG->defult_admin_user", "$CFG->defult_admin_pass", 1);
 }
 catch (Exception $e)
 {

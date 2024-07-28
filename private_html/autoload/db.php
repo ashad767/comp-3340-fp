@@ -23,6 +23,8 @@ abstract class db
         self::$dbh->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
         self::$dbh->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_NATURAL);
       }
+      else
+        echo "Connection failed";
     }
   }
 
