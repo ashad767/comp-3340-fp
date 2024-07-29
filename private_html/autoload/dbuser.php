@@ -21,13 +21,6 @@ CREATE TABLE users (
   pass VARCHAR(255) NOT NULL,
   isAdmin TINYINT NOT NULL
 );
-CREATE TABLE blogs (
-  id INTEGER PRIMARY KEY,
-  user VARCHAR(80) NOT NULL,
-  created DATE NOT NULL,
-  content LONGTEXT NOT NULL,
-  FOREIGN KEY (user) REFERENCES users(user)
-)
 ZZEOF;
         return $this->db_handle()->exec($sql);
     }
