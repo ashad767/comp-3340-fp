@@ -18,8 +18,9 @@ final class dbuser extends db
         $sql = <<<ZZEOF
 CREATE TABLE users (
   user VARCHAR(80) PRIMARY KEY,
-  pass VARCHAR(255) NOT NULL
-)
+  pass VARCHAR(255) NOT NULL,
+  isAdmin TINYINT NOT NULL
+);
 ZZEOF;
         return $this->db_handle()->exec($sql);
     }
@@ -56,16 +57,17 @@ ZZEOF;
     }
 
     // Inserts a new user $user into the DBUser table having password $pass.
-    public function insert($user, $pass)
+    public function insert($user, $pass, $isAdmin)
     {
         // Create the entry to add...
         $entry = array(
           ':user' => $user,
           ':pass' => $this->compute_password_hash($pass),
+          ':isAdmin' => $isAdmin,
         );
 
         // Create the SQL prepared statement and insert the entry...
-        $sql = 'INSERT INTO users VALUES (:user, :pass)';
+        $sql = 'INSERT INTO users VALUES (:user, :pass, :isAdmin)';
         $stmt = $this->db_handle()->prepare($sql);
         return $stmt->execute($entry);
     }

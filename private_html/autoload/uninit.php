@@ -6,10 +6,13 @@ require_once('common.php');
 // would trigger this and only would output errors if they occured.
 try
 {
-  echo "Destroying users DB...\n";
+//   echo "Destroying users DB...\n";
+  $blog = new blog();
+  $blog->admin_destroy_db();
   $db = new dbuser();
   $db->admin_destroy_db();
-  echo "Finished destroying DB.\n";
+  setcookie("user", "", time() - 500);
+//   echo "Finished destroying DB.\n";
 }
 catch (Exception $e)
 {

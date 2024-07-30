@@ -1,5 +1,5 @@
 <?php
-require_once('common.php');
+require_once('../private_html/common.php');
 
 $text = $_POST['sometext'];
 

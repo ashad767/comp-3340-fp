@@ -1,5 +1,5 @@
 <?php
-require_once('common.php');
+require_once('../private_html/common.php');
 
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
